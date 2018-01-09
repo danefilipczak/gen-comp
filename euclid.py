@@ -3,6 +3,7 @@ import random
 from copy import deepcopy
 
 
+
 def bjorklund(pulses, steps, rotation=0):
     '''
             returns a list of binary values representing the attacks in a euclidean sequence, e.g. [1, 0, 1, 0, 1, 0, 0]
@@ -31,8 +32,8 @@ def bjorklund(pulses, steps, rotation=0):
         level = level + 1
         if remainders[level] <= 1:
             break
-    counts.append(divisor)
-    
+    counts.append(divisor) 
+
     def build(level):
         if level == -1:
             pattern.append(0)
@@ -43,14 +44,15 @@ def bjorklund(pulses, steps, rotation=0):
                 build(level - 1)
             if remainders[level] != 0:
                 build(level - 2)
-    
+
+    def rotate(l, n):
+            return l[n:] + l[:n]
     build(level)
     # i = pattern.index(1)
     # pattern = pattern[i:] + pattern[0:i]
     
 
-    def rotate(l, n):
-        return l[n:] + l[:n]
+    
 
     return rotate(pattern[::-1], rotation)
 
