@@ -70,7 +70,7 @@ def euclidize(stream, length, pulses, steps, rotation=0):
         if euclidBinary[i] == 1:
             euclidQuarterLengths.append((length/steps)*i)
 
-    return stream.sliceAtOffsets(euclidQuarterLengths, addTies=False, inPlace=True)
+    return stream.sliceAtOffsets(euclidQuarterLengths, addTies=False)
 
 def makeRandomEuclidean(score_, measureLength):
     '''
