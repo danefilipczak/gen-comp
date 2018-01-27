@@ -84,6 +84,17 @@ def makeRandomEuclidean(score_, measureLength):
     return score
 
 
+def euclidizeRandomly(score, measureLength):
+    newScore = m21.stream.Score()
+    for part in score.parts:
+        newPart = m21.stream.Part()
+        for measure in part.getElementsByClass(m21.stream.Measure):
+            newMeasure = euclidize(measure, measureLength, random.randint(5, 10), random.choice([16, 12]))
+            newPart.append(newMeasure)
+        newScore.insert(0, newPart)
+    return newScore
+
+
 if __name__ == '__main__':
     ''' some test functions '''
     # print a bjorklund sequence
@@ -95,8 +106,13 @@ if __name__ == '__main__':
     s.append(n)
     #euclidize(s, 8, 12, 1).show()
 
-    b = m21.corpus.parse('palestrina/Agnus_01.krn')
-    euclid = makeRandomEuclidean(b, 8)
-    b.show()
+    # b = m21.corpus.parse('palestrina/Agnus_01.krn')
+    # euclid = makeRandomEuclidean(b, 8)
+    # b.show()
+    # euclid.show()
+
+
+    b = m21.corpus.parse('bwv66.6')
+    euclid = euclidizeRandomly(b, 4)
     euclid.show()
 

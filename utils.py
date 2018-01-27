@@ -2,6 +2,7 @@
 from midi2audio import FluidSynth
 from music21 import midi
 import os
+import music21
 
 
 def render(stream, path):
@@ -16,3 +17,11 @@ def render(stream, path):
 	fs = FluidSynth()
 	fs.midi_to_audio('temp.mid', path)
 	os.remove('temp.mid')
+
+
+
+def instrumentate(score, instrument):
+    for part in score.parts:
+        newInstrument = music21.instrument.fromString(instrument)
+        part.insert(0, newInstrument)
+    return score
